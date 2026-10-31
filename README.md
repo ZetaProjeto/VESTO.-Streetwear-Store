@@ -51,3 +51,13 @@ supabase.sql     banco, RLS e funções seguras
 .nojekyll        publicação estática no GitHub Pages
 README.md        instruções
 ```
+
+## Painel separado: VESTO. Manager
+
+Acesse `https://SEU-USUARIO.github.io/SEU-REPOSITORIO/manager/` para utilizar o painel administrativo independente da vitrine. O painel oferece login, inclusão/edição/ocultação de produtos, upload de imagens, preços, variações de tamanho/cor/estoque e acompanhamento dos pedidos. **A loja e o painel usam o mesmo `config.js` e o mesmo Supabase.**
+
+Para habilitar o upload de fotos execute, uma única vez, `manager/storage.sql` no SQL Editor do Supabase **depois** de `supabase.sql`. As imagens desse bucket são públicas para permitir a exibição no catálogo, mas o upload exige autenticação administrativa via políticas RLS. Não inclua chave `service_role` nem chaves secretas no JavaScript. Configure um usuário no Supabase Authentication e insira seu UUID em `public.admins`, conforme instruções acima.
+
+O endereço `/manager/` não é uma proteção de segurança por si só; o controle efetivo é feito por Supabase Auth e pelas políticas RLS do banco e Storage. O painel deve ser usado com HTTPS. Esta versão mantém também o painel antigo em `#admin` por compatibilidade; para usar apenas o novo painel, acesse exclusivamente `/manager/`.
+
+> GitHub Pages é adequado para testes e apresentação do projeto. Os termos do GitHub restringem seu uso como hospedagem gratuita de e-commerce comercial. Para uma loja em produção, utilize hospedagem comercial apropriada para o frontend.
